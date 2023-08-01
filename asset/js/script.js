@@ -13,7 +13,7 @@ function createCells() {
     for (let x = 0; x < 15; x++) {
       const cell = document.createElement("div");
       cell.setAttribute("class", "cell");
-      cell.setAttribute("id", "r" + i + "x" + x);
+      cell.setAttribute("id",  i + "," + x);
       cell.dataset.value = true;
       cell.addEventListener("click", cellClicking);
       boardRow.appendChild(cell);
@@ -23,31 +23,35 @@ function createCells() {
 
 createCells();
 
-checkTurn(checkRound(round));
+checkTurn(checkRound(round),null);
 
 function cellClicking(event) {
   const clickedCellId = event.target.id;
   const clickedCellValue = event.target.dataset.value;
 
   if (clickedCellValue === "true") {
-    console.log(`Round ${round}, on position ${clickedCellId}`);
     round = Number(round) + 1;
-    checkTurn(checkRound(round));
+    checkTurn(checkRound(round),clickedCellId);
+    console.log(`Round ${round}, ${clickedCellValue} droped on position ${clickedCellId}`);
   }
-
-  event.target.dataset.value = false;
 }
 
 function checkRound(number) {
   return Number(number) % 2 === 0;
 }
 
-function checkTurn(roundBool) {
+function checkTurn(roundBool, dropPosition) {
   if (roundBool === true) {
     player2.style.color = "red";
     player1.style.color = "black";
+    let drop = document.getElementById(dropPosition);
+    drop.style.backgroundImage=  "url('/asset/img/blkSmall.png')";
+    drop.dataset.value = 'p1';
   } else {
     player2.style.color = "black";
     player1.style.color = "red";
+    let drop = document.getElementById(dropPosition);
+    drop.style.backgroundImage=  "url('/asset/img/whiteSmall.png')";
+    drop.dataset.value = 'p2';
   }
 }

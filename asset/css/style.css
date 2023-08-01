@@ -7,7 +7,7 @@ body{
     height: 800px;
     width: 800px;
     border: 1px solid black;
-    opacity: 0.7;
+    opacity: 0.8;
     background-image: url('/asset/board.jpg');
     display: flex;
     flex-direction: column;
@@ -33,6 +33,7 @@ body{
     height: 50px;
     width: 50px;
     background-image: url('/asset/img/grid-big.png');
+    opacity: 100%;
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
