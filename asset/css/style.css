@@ -1,0 +1,54 @@
+body{
+    display: flex;
+    gap: 10px;
+}
+
+.board{
+    height: 800px;
+    width: 800px;
+    border: 1px solid black;
+    opacity: 0.7;
+    background-image: url('/asset/board.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.boardRow{
+    height: 50px;
+    width: 750px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    display: flex;
+    margin-top: -1px;
+}
+#boardRow0{
+    border-top: 3px solid black;
+}
+#boardRow14{
+    border-bottom: 3px solid black;
+}
+
+.cell{
+    height: 50px;
+    width: 50px;
+    background-image: url('/asset/img/grid-big.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+@media (max-height:800px){
+    .board{
+        height: 700px;
+        width: 700px;
+    }
+    .boardRow{
+        height: 45px;
+        width: 675px;
+    }
+    .cell{
+        height: 45px;
+        width: 45px;
+    }
+}
