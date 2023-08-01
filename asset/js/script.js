@@ -13,7 +13,7 @@ function createCells() {
     for (let x = 0; x < 15; x++) {
       const cell = document.createElement("div");
       cell.setAttribute("class", "cell");
-      cell.setAttribute("id",  i + "," + x);
+      cell.setAttribute("id", i + "," + x);
       cell.dataset.value = true;
       cell.addEventListener("click", cellClicking);
       boardRow.appendChild(cell);
@@ -23,7 +23,7 @@ function createCells() {
 
 createCells();
 
-checkTurn(checkRound(round),null);
+checkTurn(checkRound(round), null);
 
 function cellClicking(event) {
   const clickedCellId = event.target.id;
@@ -31,8 +31,10 @@ function cellClicking(event) {
 
   if (clickedCellValue === "true") {
     round = Number(round) + 1;
-    checkTurn(checkRound(round),clickedCellId);
-    console.log(`Round ${round}, ${clickedCellValue} droped on position ${clickedCellId}`);
+    checkTurn(checkRound(round), clickedCellId);
+    console.log(
+      `Round ${round}, ${clickedCellValue} droped on position ${clickedCellId}`
+    );
   }
 }
 
@@ -45,13 +47,26 @@ function checkTurn(roundBool, dropPosition) {
     player2.style.color = "red";
     player1.style.color = "black";
     let drop = document.getElementById(dropPosition);
-    drop.style.backgroundImage=  "url('/asset/img/blkSmall.png')";
-    drop.dataset.value = 'p1';
+    drop.style.backgroundImage = "url('/asset/img/blkSmall.png')";
+    drop.dataset.value = "p1";
   } else {
     player2.style.color = "black";
     player1.style.color = "red";
     let drop = document.getElementById(dropPosition);
-    drop.style.backgroundImage=  "url('/asset/img/whiteSmall.png')";
-    drop.dataset.value = 'p2';
+    drop.style.backgroundImage = "url('/asset/img/whiteSmall.png')";
+    drop.dataset.value = "p2";
   }
+}
+
+function testFunction(){
+    let p1S = 1;
+    let p2S =1;
+    const p1 = document.querySelectorAll('div[data-value="p1"]');
+    const p2 = document.querySelectorAll('div[data-value="p2"]');
+    console.log(p1.length);
+    console.log(p2.length);
+}
+
+function getPosition(){
+    
 }
