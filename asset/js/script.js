@@ -1,6 +1,8 @@
-var round = 1;
+var round = 0;
 var player1 = document.getElementById("player1");
 var player2 = document.getElementById("player2");
+var players1 = [];
+var players2 = [];
 
 function createCells() {
   let board = document.getElementById("board");
@@ -13,7 +15,7 @@ function createCells() {
     for (let x = 0; x < 15; x++) {
       const cell = document.createElement("div");
       cell.setAttribute("class", "cell");
-      cell.setAttribute("id", i + "," + x);
+      cell.setAttribute("id", x + "," + i);
       cell.dataset.value = true;
       cell.addEventListener("click", cellClicking);
       boardRow.appendChild(cell);
@@ -44,29 +46,38 @@ function checkRound(number) {
 
 function checkTurn(roundBool, dropPosition) {
   if (roundBool === true) {
-    player2.style.color = "red";
-    player1.style.color = "black";
-    let drop = document.getElementById(dropPosition);
-    drop.style.backgroundImage = "url('/asset/img/blkSmall.png')";
-    drop.dataset.value = "p1";
-  } else {
     player2.style.color = "black";
     player1.style.color = "red";
     let drop = document.getElementById(dropPosition);
     drop.style.backgroundImage = "url('/asset/img/whiteSmall.png')";
     drop.dataset.value = "p2";
+    const player = { pName: "p2", roundNum: round, position: dropPosition };
+    players2.push(player);
+  } else {
+    player2.style.color = "red";
+    player1.style.color = "black";
+    let drop = document.getElementById(dropPosition);
+    drop.style.backgroundImage = "url('/asset/img/blkSmall.png')";
+    drop.dataset.value = "p1";
+    const player = { pName: "p1", roundNum: round, position: dropPosition };
+    players1.push(player);
   }
 }
 
-function testFunction(){
-    let p1S = 1;
+function testFunction() {
+  /*let p1S = 1;
     let p2S =1;
     const p1 = document.querySelectorAll('div[data-value="p1"]');
-    const p2 = document.querySelectorAll('div[data-value="p2"]');
-    console.log(p1.length);
-    console.log(p2.length);
+    const p2 = document.querySelectorAll('div[data-value="p2"]');*/
+  console.log(players1);
+  console.log(players2);
+  checkResult(players1);
+  checkResult(players2);
 }
 
-function getPosition(){
-    
+function checkResult(playerArr){
+  let lastDrop = playerArr[playerArr.length-1];
+  let lastDroper = lastDrop.pName;
+  let lastPosition = lastDrop.position.split(',');
+  console.log(lastPosition +"=="+lastDroper);
 }
